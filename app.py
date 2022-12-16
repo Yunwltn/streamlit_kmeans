@@ -19,13 +19,18 @@ def main() :
         
     # 업로드한 csv 파일을 데이터프레임으로 읽기
     if file is not None :
-        df = pd.read_csv(file)
-        st.success('CSV파일이 업로드 되었습니다')
-        st.dataframe(df)
+        if st.checkbox('불러온 파일이 Unnamed: 0일 경우 클릭 해주세요') :
+            df = pd.read_csv(file, index_col=0)
+            st.success('CSV파일이 업로드 되었습니다')
+            st.dataframe(df)
+        else :
+            df = pd.read_csv(file)
+            st.success('CSV파일이 업로드 되었습니다')
+            st.dataframe(df)
 
         # 비어있는 데이터 확인하고 있으면 제거하기
         st.subheader('')
-        st.subheader('데이터 확인하기 :memo:')
+        st.subheader('수치 데이터 확인하기 :memo:')
         st.dataframe(df.describe())
 
         if st.checkbox('0 데이터로 채워져 있는 값을 nan값으로 변경하기') :
@@ -48,6 +53,7 @@ def main() :
         st.subheader('X로 사용할 컬럼 설정 :pushpin:')
         column_list2 = df.columns
         selected_column2 = st.multiselect('X로 사용할 컬럼을 선택하세요', column_list2)
+        st.warning('문자열 컬럼은 1개만 선택해주세요')
 
         if len(selected_column2) != 0 :
             X = df[selected_column2]
@@ -55,13 +61,13 @@ def main() :
         # X의 컬럼 데이터가 문자가 있는지 확인
             X_object_column = X.columns.values[X.dtypes == 'object']
             
-            if X[X_object_column].nunique().values <= 2 :
+            if X[X_object_column].nunique().values == 2 :
                 # label 실행
                 encoder = LabelEncoder()
                 X[X_object_column] = pd.DataFrame(encoder.fit_transform( X[X_object_column] ))
                 st.info(':arrow_forward: 문자열 데이터 컬럼 Label Encoding 실행하였습니다')
                 st.dataframe(X)
-            elif X[X_object_column].nunique().values > 2:
+            elif X[X_object_column].nunique().values >= 1:
                 # one-hot 실행
                 X_list = X.columns.values.tolist()
                 X_list_index = X_list.index(X_object_column)
