@@ -45,7 +45,7 @@
 	<h6> K-Means로 묶은 데이터를 그룹별로 조회, 저장할 수 있는 웹 대시보드 개발 <h6>
 	<br>
 		
-👉웹대시보드 <주소입력예정/>
+👉웹대시보드 <http://ec2-3-38-117-95.ap-northeast-2.compute.amazonaws.com:8502/>
 </div>	
 <div align=center> 
 	<br>
