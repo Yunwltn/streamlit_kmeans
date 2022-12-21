@@ -83,7 +83,7 @@ def main() :
         st.subheader('')
         st.subheader('클러스터링 갯수 선택 :pushpin:')
         if st.checkbox('WCSS 확인하기'):
-            max_number = st.slider('WCSS를 확인하기 위한 최대 그룹 갯수 선택', 2, 20, value=10)
+            max_number = st.slider('WCSS를 확인하기 위한 최대 그룹 갯수 선택', 2, 20, value=5)
             if len(selected_column2) == 0 :
                 st.write('')
             else :
