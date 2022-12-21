@@ -65,6 +65,7 @@
 <h4>Visual Studio Code에서 Streamlit 라이브러리로 작업<h4>
 
 <h5>메인 앱 화면 생성<h5>
+	
 - CSV 파일을 업로드할 수 있게 file uploader 기능 설정
 - 불러온 CSV파일이 Unnamed: 0일 경우 처리하는 기능 설정
 - 불러온 파일의 수치데이터를 확인할 수 있는 데이터프레임 표시
