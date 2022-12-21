@@ -9,7 +9,7 @@ import numpy as np
 
 
 def main() :
-    st.title('K-Means Clustering')
+    st.title('K-Means Clustering App')
     st.write('K-means clustering은 주어진 데이터를 k개의 클러스터로 묶는 알고리즘입니다')
     st.write('')
 
