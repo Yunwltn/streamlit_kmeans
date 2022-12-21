@@ -36,7 +36,6 @@
 	<img src="https://img.shields.io/badge/OneHotEncoder-000000?style=flat&logo=&logoColor=white" />
 	<img src="https://img.shields.io/badge/ColumnTransformer-000000?style=flat&logo=&logoColor=white" />
 	<img src="https://img.shields.io/badge/KMeans-000000?style=flat&logo=&logoColor=white" />
-	
 	<h3> 사용한 Tools🔨 <h3>
 	<img src="https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=Jupyter&logoColor=white" />
 	<img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat&logo=Visual Studio Code&logoColor=white" />
