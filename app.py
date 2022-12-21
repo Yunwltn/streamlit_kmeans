@@ -82,8 +82,7 @@ def main() :
         # WCSS를 확인하기 위한 그룹의 갯수 정하기
         st.subheader('')
         st.subheader('클러스터링 갯수 선택 :pushpin:')
-        st.info('WCSS로 그룹 갯수를 추천받아보세요!')
-        if st.checkbox('WCSS로 추천받기'):
+        if st.checkbox('WCSS 확인하기'):
             max_number = st.slider('WCSS를 확인하기 위한 최대 그룹 갯수 선택', 2, 20, value=10)
             if len(selected_column2) == 0 :
                 st.write('')
