@@ -53,33 +53,31 @@ def main() :
         st.subheader('X로 사용할 컬럼 설정 :pushpin:')
         column_list2 = df.columns
         selected_column2 = st.multiselect('X로 사용할 컬럼을 선택하세요', column_list2)
-        st.warning('문자열 컬럼은 1개만 선택해주세요')
 
         if len(selected_column2) != 0 :
             X = df[selected_column2]
             st.dataframe(X)
-        # X의 컬럼 데이터가 문자가 있는지 확인
-            X_object_column = X.columns.values[X.dtypes == 'object']
-            
-            if X[X_object_column].nunique().values == 2 :
-                # label 실행
-                encoder = LabelEncoder()
-                X[X_object_column] = pd.DataFrame(encoder.fit_transform( X[X_object_column] ))
-                st.info(':arrow_forward: 문자열 데이터 컬럼 Label Encoding 실행하였습니다')
-                st.dataframe(X)
-            elif X[X_object_column].nunique().values >= 1:
-                # one-hot 실행
-                X_list = X.columns.values.tolist()
-                X_list_index = X_list.index(X_object_column)
-                ct = ColumnTransformer( [ ( 'encoder', OneHotEncoder() , [X_list_index]  ) ], remainder= 'passthrough' )
-                X = ct.fit_transform(X)
-                st.info(':arrow_forward: 문자열 데이터 컬럼 One-Hot Encoding 실행하였습니다')
-                st.dataframe(X)
+
+            # 문자열 컬럼 처리
+            X_new = pd.DataFrame()
+
+            for name in X.columns : 
+                data = X[name]
+            if data.dtype == object :
+                if data.nunique() <= 2 :
+                    label_encoder = LabelEncoder()
+                    X_new[name] = label_encoder.fit_transform(data)
+                else :
+                    ct = ColumnTransformer( [('encoder', OneHotEncoder(), [0])], remainder= 'passthrough' )
+                    col_names = sorted( data.unique() )
+                    X_new[ col_names ] = ct.fit_transform( data.to_frame() )
+            else :
+                X_new[name] = data
 
             # X값 피처스케일링
-            if st.checkbox('Data Feature Scaling') :  
-                m_scaler_x = MinMaxScaler()
-                X = m_scaler_x.fit_transform(X)
+        if st.checkbox('Data Feature Scaling') :  
+            m_scaler_x = MinMaxScaler()
+            X_new = m_scaler_x.fit_transform(X_new)
 
         # WCSS를 확인하기 위한 그룹의 갯수 정하기
         st.subheader('')
@@ -93,7 +91,7 @@ def main() :
                 wcss = []
                 for k in np.arange(1, max_number+1) :
                     kmeans = KMeans(n_clusters= k, random_state= 5)
-                    kmeans.fit(X)
+                    kmeans.fit(X_new)
                     wcss.append( kmeans.inertia_ )
 
             x = np.arange(1, max_number+1)
@@ -109,7 +107,7 @@ def main() :
             k = st.number_input('그룹갯수 결정', 1, 20)
 
             kmeans = KMeans(n_clusters= k, random_state= 5)
-            y_pred = kmeans.fit_predict(X)
+            y_pred = kmeans.fit_predict(X_new)
             df['Group'] = y_pred
             df = df.sort_values('Group')
             st.dataframe(df)
