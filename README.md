@@ -1,5 +1,5 @@
 <div align=center>
-	<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=K-Means_Clustering_App&fontSize=60" />
+	<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=K-Means%20Clustering%20App&fontSize=60" />
 </div>
 <div align=center>
 	<a href="mailto:yunwltn98@gmail.com"><img src="https://img.shields.io/badge/Gmail-EA4335?style=flat&logo=Gmail&logoColor=white&link="mailto:yunwltn98@gmail.com" />
@@ -94,3 +94,8 @@
 ![1](https://user-images.githubusercontent.com/120348555/208817728-37a32c71-b7e5-4a11-8d31-d0f534581a15.PNG)
 ![2](https://user-images.githubusercontent.com/120348555/208817771-5730fbe8-3586-41cf-beef-d266171143e3.PNG)
 ![3](https://user-images.githubusercontent.com/120348555/208817791-524fd50d-5d28-40ed-ac13-8d790894850f.PNG)
+
+<div align=center>
+	<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=100&section=footer&text=Thank%20you&fontSize=50&animation=twinkling" />
+</div>	
+
